@@ -1,0 +1,28 @@
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+# Rewrite URLs to pass as query parameters to index.php for page navigation
+RewriteRule ^([^/]+)/page=([0-9]+)$ index.php?mapage=$1&page=$2 [QSA,L]
+
+# Rewrite URLs to pass as query parameters to index.php for tags
+RewriteRule ^([^/]+)/tag=([^/]+)$ index.php?mapage=$1&tag=$2 [QSA,L]
+
+# Rewrite URLs to pass as query parameters to index.php for slugs
+
+RewriteRule ^([^/]+)/([^/.]+)$ index.php?mapage=$1&slug=$2 [QSA,L]
+
+# Default rule for single parameter URLs
+RewriteRule ^([^/]+)/?$ index.php?mapage=$1 [QSA,L]
+
+ErrorDocument 403 http://localhost/blogv2/error403
+ErrorDocument 404 http://localhost/blogv2/error404
+ErrorDocument 500 http://localhost/blogv2/error500
+
+Options ALL -Indexes
+ServerSignature Off
+Options +FollowSymLinks
+AddDefaultCharset UTF-8
