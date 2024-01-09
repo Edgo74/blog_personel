@@ -1,35 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Feb 18, 2019 at 11:43 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `blog`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
 
 CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(122) NOT NULL,
   `email` varchar(122) NOT NULL,
   `subject` varchar(122) NOT NULL,
@@ -37,82 +13,79 @@ CREATE TABLE `comments` (
   `slug` varchar(122) NOT NULL,
   `created_at` date NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `name`, `email`, `subject`, `description`, `slug`, `created_at`, `status`) VALUES
-(1, 'ranj', 'ranj@gmail.com', 'nature', 'nice article', 'What-is-Lorem-Ipsum-', '2019-02-18', 1),
-(2, 'simon', 'simon12@gmail.com', 'nature', 'nice article from this blog', 'Greater-One-Horned-Rhinoceros', '2019-02-18', 1),
-(3, 'nic', 'nic12@gmail.com', 'bird', 'i like birds', 'What-is-Lorem-Ipsum-', '2019-02-18', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `posts`
---
 
 CREATE TABLE `posts` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(122) NOT NULL,
+  `title_fr` varchar(122) NOT NULL,
   `description` text NOT NULL,
+  `description_fr` text NOT NULL,
   `image` varchar(122) NOT NULL,
   `created_at` date NOT NULL,
   `slug` varchar(122) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 
---
--- Dumping data for table `posts`
---
 
-INSERT INTO `posts` (`id`, `title`, `description`, `image`, `created_at`, `slug`) VALUES
-(1, 'What is Lorem Ipsum?', '<p>Chitwan National Park is home to the second largest population of greater <strong>one horned rhinoceros</strong>. ... Today, however, no more than 2,000 remain in the wild, with</p>', 'birds.jpg', '2019-02-18', 'What-is-Lorem-Ipsum-'),
-(2, 'Greater One - Horned Rhinoceros', '<p>the rhino population was estimated at ca. 1,000 in the Chitwan valley until 1950. The area was well protected by the then Rana rulers for sport hunting. It was also secure from outsiders since malaria was rampant. Only a few indigenous communities like the Tharus , who are immune to the disease, lived there. Their impact on the natural environment</p>', 'Greater_One_Horned_Rhino_8.6.2012_Hero_and_Circle_HI_107996.jpg', '2019-02-18', 'Greater-One-Horned-Rhinoceros'),
-(3, 'this is paint', '<p>Balenciagaâ€™s directional Speed trainers are now available for children in this vivid cobalt-blue hue. Crafted in Italy, the sock-like construction is made from double-knit jersey set on a memory-technology s</p>', 'arva10_hero.jpg', '2019-02-18', 'this-is-paint'),
-(4, 'Holi is colour festival', '<p>Holi is the festival of love or colors that signifies the victory of superior over immoral. <i><strong>Holi festival</strong></i> is commemorate on February end or starting March</p>', 'holy.png', '2019-02-18', 'Holi-is-colour-festival'),
-(5, 'php is most popular language', '<p><a href=\"www.php.net\">PHP</a>: Hypertext Preprocessor is a server-side scripting language designed for web development. It was originally created by Rasmus Lerdorf in 1994; the PHP reference implementation is now produced by The PHP Group</p>', '1_bvfc4WbLY5HV00VMCndazQ.jpeg', '2019-02-18', 'php-is-most-popular-language'),
-(6, 'PHP is popular programming language', '<p><a href=\"www.php.net\">PHP</a>: Hypertext Preprocessor is a server-side scripting language designed for web development. It was originally created by Rasmus Lerdorf in 1994</p>', 'php-dedicated.jpg', '2019-02-18', 'PHP-is-popular-programming-language');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `post_tags`
---
 
 CREATE TABLE `post_tags` (
-  `tag_id` int(11) NOT NULL,
+  `tag_id` int(11) NOT NULL ,
   `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 
---
--- Dumping data for table `post_tags`
---
 
-INSERT INTO `post_tags` (`tag_id`, `post_id`) VALUES
-(1, 1),
-(3, 1),
-(1, 2),
-(4, 3),
-(4, 4),
-(2, 5),
-(2, 6);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tags`
---
 
 CREATE TABLE `tags` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `tag` varchar(122) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+); 
 
---
--- Dumping data for table `tags`
---
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `username` varchar(122) NOT NULL,
+  `password` varchar(122) NOT NULL
+);
+
+
+
+-- dump data into the database 
+
+INSERT INTO `posts` (`id`, `title`,`title_fr` , `description`,`description_fr`, `image`, `created_at`, `slug`) VALUES
+
+(1, 'The Evolution of Programming Languages: From Pioneers to Modern Innovations',"L'évolution des langages de programmation : Des pionniers aux innovations modernes" ,  "Programming languages have been the cornerstone of technological advancement since the mid-20th century. From the early days of machine code and assembly languages to the vast array of high-level languages today, the evolution of programming has been nothing short of remarkable.
+
+The journey begins with the pioneering work of computer scientists like Grace Hopper and John McCarthy. Hopper's creation of the first compiler, A-0, laid the groundwork for higher-level languages. McCarthy introduced LISP, one of the earliest high-level languages, emphasizing the power of symbolic processing.
+
+The 1970s witnessed the birth of languages that are still influential today. C, developed by Dennis Ritchie, revolutionized systems programming with its efficiency and portability. Simultaneously, Bjarne Stroustrup introduced C++, a language that combined the power of C with object-oriented programming.
+
+The late 20th century and early 21st century saw an explosion of languages catering to diverse needs. Python emerged as a versatile language, renowned for its readability and simplicity. JavaScript became ubiquitous, enabling dynamic and interactive web experiences. Meanwhile, functional programming gained traction with languages like Haskell and Scala.
+
+Today, languages continue to evolve to meet modern challenges. Go, created by Google, emphasizes simplicity and efficiency for concurrent operations. Rust focuses on safety and performance, addressing memory safety issues prevalent in low-level languages.
+
+The future promises even more exciting developments. Quantum computing languages like Q# are emerging to tackle the complexities of quantum algorithms. Languages designed for machine learning and AI, such as TensorFlow and PyTorch, are enabling groundbreaking innovations.
+
+As technology advances, programming languages will keep evolving, shaping the future of innovation and problem-solving across various domains.","Les langages de programmation ont été le fondement de l'avancée technologique depuis le milieu du XXe siècle. Des premiers jours du code machine et des langages d'assemblage à la vaste gamme de langages de haut niveau d'aujourd'hui, l'évolution de la programmation a été remarquable.
+
+Le voyage commence avec le travail novateur de scientifiques de l'informatique comme Grace Hopper et John McCarthy. La création par Hopper du premier compilateur, A-0, a posé les bases des langages de niveau supérieur. McCarthy a introduit LISP, l'un des premiers langages de haut niveau, mettant en avant la puissance du traitement symbolique.
+
+Les années 1970 ont vu naître des langages qui ont toujours une influence aujourd'hui. C, développé par Dennis Ritchie, a révolutionné la programmation système par son efficacité et sa portabilité. Simultanément, Bjarne Stroustrup a introduit C++, un langage qui a combiné la puissance de C avec la programmation orientée objet.
+
+La fin du XXe siècle et le début du XXIe siècle ont vu une explosion de langages répondant à des besoins divers. Python est devenu un langage polyvalent, reconnu pour sa lisibilité et sa simplicité. JavaScript est devenu omniprésent, permettant des expériences web dynamiques et interactives. Pendant ce temps, la programmation fonctionnelle a gagné du terrain avec des langages comme Haskell et Scala.
+
+Aujourd'hui, les langages continuent d'évoluer pour relever les défis modernes. Go, créé par Google, met l'accent sur la simplicité et l'efficacité pour les opérations concurrentes. Rust se concentre sur la sécurité et les performances, abordant les problèmes de sécurité de la mémoire répandus dans les langages de bas niveau.
+
+L'avenir promet encore plus de développements passionnants. Des langages pour l'informatique quantique comme Q# émergent pour s'attaquer aux complexités des algorithmes quantiques. Des langages conçus pour l'apprentissage automatique et l'IA, tels que TensorFlow et PyTorch, permettent des innovations révolutionnaires.
+
+À mesure que la technologie progresse, les langages de programmation continueront d'évoluer, façonnant l'avenir de l'innovation et de la résolution de problèmes dans divers domaines.
+
+
+" ,'programmation.jpeg', '2023-02-18', 'The-Evolution-of-Programming-Languages');
+
+INSERT INTO `comments` (`id`, `name`, `email`, `subject`, `description`, `slug`, `created_at`, `status`) VALUES
+(1, 'John', 'Jdoe@gmail.com', 'programmation', 'nice article', 'The-Evolution-of-Programming-Languages', '2023-02-20', 1);
+
 
 INSERT INTO `tags` (`id`, `tag`) VALUES
 (1, 'wildlife'),
@@ -120,82 +93,11 @@ INSERT INTO `tags` (`id`, `tag`) VALUES
 (3, 'nature'),
 (4, 'fashion');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `users`
---
+INSERT INTO `post_tags` (`tag_id`, `post_id`) VALUES(1, 1);
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(122) NOT NULL,
-  `password` varchar(122) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (1, 'john', '6e0b7076126a29d5dfcbd54835387b7b');
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `posts`
---
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `tags`
---
-ALTER TABLE `tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
