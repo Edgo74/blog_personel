@@ -31,7 +31,6 @@
             $page = $_GET['page'];
 
             $pageLink = "<ul class='pagination'>";
-
             if ($page > 1) {
                 $pageLink .= "<a class='page-link' href='" . URL . "home/page=1'>First</a>";
                 $pageLink .= "<a class='page-link' href='" . URL . "home/page=" . ($page - 1) . "'><<<</a>";

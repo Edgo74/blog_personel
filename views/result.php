@@ -42,9 +42,9 @@
 			$_GET['page'] = 1;
 		}
 
+
 		$page = $_GET['page'];
 		$pageLink = "<ul class='pagination'>";
-
 		if ($page > 1) {
 			$pageLink .= "<a class='page-link' href='index.php?mapage=dashboard&page=1'>First</a>";
 			$pageLink .= "<a class='page-link' href='index.php?mapage=dashboard&page=" . ($page - 1) . "'><<<</a>";

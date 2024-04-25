@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="row">
 
-		<div class="card">
-			<img class="card-img-top" src="<?= URL ?>images/<?php echo $posts['image']; ?>">
+		<div class="card d-flex mt-3 ml-4">
+			<img src="<?= URL ?>images/<?php echo $posts['image']; ?>" class=" mx-auto " style="max-width:500px;">
 		</div>
 		<div class="card-body">
 			<h4 class="card-title"><?= $posts['title']; ?></h4>
